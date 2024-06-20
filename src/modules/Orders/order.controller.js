@@ -5,7 +5,7 @@ import { isCouponValid } from "../../utils/couponValidation.js";
 import { cartModel } from "../../../DB/Models/cart.model.js";
 import { customAlphabet } from "nanoid";
 import createInvoice from "../../utils/pdfkit.js";
-import sendEmailService from "../../services/email/sendEmailService.js";
+import { sendEmailService } from "../../services/email/sendEmailService.js";
 const nanoid = customAlphabet("123456_=!ascbhdtel", 5);
 // ===================== create order ===================
 export const createOrder = async (req, res, next) => {
