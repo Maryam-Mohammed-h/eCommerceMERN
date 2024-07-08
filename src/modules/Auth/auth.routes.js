@@ -10,7 +10,6 @@ const router = Router();
 
 router.post(
   "/",
-  //   validationCoreFunction(validators.createBrandSchema),
   asyncHandler(ac.signUp)
 );
 router.get("/confirm/:token", asyncHandler(ac.confirmEmail));

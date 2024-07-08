@@ -17,5 +17,12 @@ router.post(
 //   //   validationCoreFunction(validators.updateCategorySchema),
 //   asyncHandler(oc.updateCoupon)
 // );
+router.get("/successOrder", asyncHandler(oc.successPayment));
+router.patch("/cancelOrder", asyncHandler(oc.cancelPayment));
+router.post(
+  "/delivere",
+  isAuth(systemRoles.ADMIN),
+  asyncHandler(oc.deliverOrder)
+);
 
 export default router;

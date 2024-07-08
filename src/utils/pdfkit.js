@@ -2,16 +2,27 @@ import fs from "fs";
 import PDFDocument from "pdfkit";
 import path from "path";
 function createInvoice(invoice, pathVar) {
-  let doc = new PDFDocument({ size: "A4", margin: 50 });
+  // 1. Ensure directory exists (optional)
+  const directoryPath = path.dirname(path.resolve(`./Files/${pathVar}`)); // Extract directory path from filePath
+  if (!fs.existsSync(directoryPath)) {
+    fs.mkdirSync(directoryPath, { recursive: true }); // Create directory if it doesn't exist
+  }
+  try {
+    let doc = new PDFDocument({ size: "A4", margin: 50 });
 
-  generateHeader(doc);
-  generateCustomerInformation(doc, invoice);
-  generateInvoiceTable(doc, invoice);
-  generateFooter(doc);
-
-  doc.end();
-  //   console.log(path.resolve(`./Files/${pathVar}`))
-  doc.pipe(fs.createWriteStream(path.resolve(`./Files/${pathVar}`)));
+    generateHeader(doc);
+    generateCustomerInformation(doc, invoice);
+    generateInvoiceTable(doc, invoice);
+    generateFooter(doc);
+    const stream = fs.createWriteStream(path.resolve(`./Files/${pathVar}`));
+    doc.pipe(stream);
+    doc.end(() => {
+      console.log("Invoice created successfully:", filePath);
+    });
+    // console.log(path.resolve(`./Files/${pathVar}`));
+  } catch (error) {
+    console.error("Error creating invoice file:", error.message);
+  }
 }
 
 function generateHeader(doc) {

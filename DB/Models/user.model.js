@@ -54,8 +54,8 @@ const userSchema = new Schema(
     },
     gender: {
       type: String,
-      default: "Not specified",
-      enum: ["Male", "Female", "Not specified"],
+      default: "NotSpecified",
+      enum: ["Male", "Female", "NotSpecified"],
     },
     age: Number,
     token: String,

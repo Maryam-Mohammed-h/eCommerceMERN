@@ -61,6 +61,7 @@ const orderSchema = new Schema(
         "Prepration",
         "On way",
         "Delivered",
+        "Rejected",
         "Cancelled",
       ],
     },

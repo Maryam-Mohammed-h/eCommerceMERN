@@ -7,7 +7,20 @@ export const isCouponValid = async ({ couponCode, subTotal, next } = {}) => {
   if (!couponExist) {
     return next(new Error("There is no coupon with that code", { cause: 400 }));
   }
-  console.log(couponExist.toDate);
+  //start date
+
+  if (
+    couponExist.status == "Valid" &&
+    moment()
+      .tz("Africa/Cairo")
+      .isBefore(moment(new Date(couponExist.fromDate)).tz("Africa/Cairo"))
+  ) {
+    console.log(
+      moment(new Date(couponExist.fromDate)).tz("Africa/Cairo"),
+      moment().tz("Africa/Cairo")
+    );
+    return next(new Error("This coupon does not start yet", { cause: 400 }));
+  }
   //expiration
   if (
     couponExist.status == "Expired" ||

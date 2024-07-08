@@ -61,7 +61,12 @@ export const signUp = async (req, res, next) => {
   });
 
   const savedUser = await user.save();
-  res.status(201).json({ message: "User created successfully ", savedUser });
+  res
+    .status(201)
+    .json({
+      descriptionMessage: "User created successfully ",
+      message: "success",
+    });
 };
 export const confirmEmail = async (req, res, next) => {
   const { token } = req.params;

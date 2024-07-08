@@ -206,7 +206,12 @@ export const searchProduct = async (req, res, next) => {
     })
     .select("title priceAfterDiscount")
     .skip(skip)
-    .limit(limit);
+    .limit(limit)
+    .populate([
+      {
+        path: "Reviews",
+      },
+    ]);
 
   res.status(200).json({ message: "Products : ", product });
 };
@@ -218,7 +223,12 @@ export const getAllProducts = async (req, res, next) => {
     .find()
     .select("title priceAfterDiscount")
     .skip(skip)
-    .limit(limit);
+    .limit(limit)
+    .populate([
+      {
+        path: "Reviews",
+      },
+    ]);
   // let page = req.query.page * 1 || 1;
   res.status(200).json({ message: "Products : ", product });
 };
@@ -229,7 +239,12 @@ export const listProducts = async (req, res, next) => {
     .sort()
     .pagination()
     .select()
-    .filters();
+    .filters()
+    .populate([
+      {
+        path: "Reviews",
+      },
+    ]);
   const products = await ApiFeatureInstance.mongooseQuery;
   res.status(200).json({ message: "Products : ", products });
 };
