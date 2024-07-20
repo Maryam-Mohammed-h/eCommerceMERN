@@ -221,7 +221,7 @@ export const getAllProducts = async (req, res, next) => {
   const { limit, skip } = paginationFunction({ page, elemsByPage });
   const product = await productModel
     .find()
-    .select("title priceAfterDiscount")
+    // .select("title priceAfterDiscount")
     .skip(skip)
     .limit(limit)
     .populate([
@@ -239,14 +239,14 @@ export const listProducts = async (req, res, next) => {
     .sort()
     .pagination()
     .select()
-    .filters()
-    .populate([
-      {
-        path: "Reviews",
-      },
-    ]);
+    .filters();
+  // .populate([
+  //   {
+  //     path: "Reviews",
+  //   },
+  // ])
   const products = await ApiFeatureInstance.mongooseQuery;
-  res.status(200).json({ message: "Products : ", products });
+  res.status(200).json({ message: "success", data: products });
 };
 
 // ================================= Delete Product  =================================
