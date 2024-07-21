@@ -246,7 +246,7 @@ export const listProducts = async (req, res, next) => {
   //   },
   // ])
   const products = await ApiFeatureInstance.mongooseQuery;
-  res.status(200).json({ message: "success", data: products });
+  res.status(200).json({ message: "success", products });
 };
 
 // ================================= Delete Product  =================================

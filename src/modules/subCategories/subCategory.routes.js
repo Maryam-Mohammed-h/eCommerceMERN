@@ -24,7 +24,7 @@ router.put(
   isAuth([systemRoles.ADMIN, systemRoles.SUPER_ADMIN]),
   asyncHandler(sc.updateSubCategory)
 );
-router.get("/", asyncHandler(sc.getAllSubCategories));
+router.get("/:categoryId", asyncHandler(sc.getAllSubCategories));
 router.delete(
   "/:subCategoryId",
   isAuth([systemRoles.ADMIN, systemRoles.SUPER_ADMIN]),

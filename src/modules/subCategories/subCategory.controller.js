@@ -61,7 +61,10 @@ export const createSubCategory = async (req, res, next) => {
 
 // ========================================== get all subCategories with category Data ==========================================
 export const getAllSubCategories = async (req, res, next) => {
-  const subCategories = await subCategoryModel.find().select("name Image");
+  let { categoryId } = req.params;
+  const subCategories = await subCategoryModel
+    .find({ categoryId })
+    .select("name Image");
   res.status(200).json({ message: "Done", subCategories });
 };
 // ========================================== update subCategory ==========================================
