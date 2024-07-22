@@ -235,11 +235,19 @@ export const getAllProducts = async (req, res, next) => {
 // ========================= get  product  ================
 export const getProduct = async (req, res, next) => {
   const { productId } = req.params;
-  const product = await productModel.find({ _id: productId }).populate([
-    {
-      path: "Reviews",
-    },
-  ]);
+  const product = await productModel.find({ _id: productId });
+  // .populate([
+  //   {
+  //     path: "Reviews",
+  //   },
+  // ])
+  if (!product) {
+    return next(
+      new Error("This product is not exist", {
+        cause: 400,
+      })
+    );
+  }
   res.status(200).json({ message: "success ", product });
 };
 // ======================= list products =================================
