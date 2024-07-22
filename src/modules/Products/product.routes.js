@@ -25,7 +25,7 @@ router.put(
   isAuth([systemRoles.ADMIN, systemRoles.SUPER_ADMIN]),
   asyncHandler(pc.updateProduct)
 );
-// router.get("/pro/:productId", asyncHandler(pc.updatePro));
+router.get("/:productId", asyncHandler(pc.getProduct));
 router.get("/", asyncHandler(pc.listProducts));
 router.get("/search", asyncHandler(pc.searchProduct));
 

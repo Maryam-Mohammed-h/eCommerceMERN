@@ -230,7 +230,17 @@ export const getAllProducts = async (req, res, next) => {
       },
     ]);
   // let page = req.query.page * 1 || 1;
-  res.status(200).json({ message: "Products : ", product });
+  res.status(200).json({ message: "success ", product });
+};
+// ========================= get  product  ================
+export const getProduct = async (req, res, next) => {
+  const { productId } = req.params;
+  const product = await productModel.find({ _id: productId }).populate([
+    {
+      path: "Reviews",
+    },
+  ]);
+  res.status(200).json({ message: "success ", product });
 };
 // ======================= list products =================================
 export const listProducts = async (req, res, next) => {
