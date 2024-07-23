@@ -121,7 +121,7 @@ export const getAllCategories = async (req, res, next) => {
       {
         path: "subCategories",
         select: "name",
-        populate: [{ path: "brand", select: "name" }],
+        // populate: [{ path: "brand", select: "name" }],
       },
     ])
     .select("name Image ");
