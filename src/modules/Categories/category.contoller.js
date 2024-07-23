@@ -115,15 +115,18 @@ export const updateCategory = async (req, res, next) => {
 
 //========================================== get all categories with subCategories ==========================================
 export const getAllCategories = async (req, res, next) => {
-  const Categories = await categoryModel.find().populate([
-    {
-      path: "subCategories",
-      select: "name",
-      // populate: [{ path: "brand", select: "name" }],
-    },
-  ]);
+  const Categories = await categoryModel
+    .find()
+    .populate([
+      {
+        path: "subCategories",
+        select: "name",
+        // populate: [{ path: "brand", select: "name" }],
+      },
+    ])
+    .select("name Image ");
 
-  res.status(200).json({ message: "success", Categories });
+  res.status(200).json({ message: "Done", Categories });
 };
 
 // ================================= Delete Category  =================================
