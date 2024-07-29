@@ -252,13 +252,13 @@ export const getProduct = async (req, res, next) => {
 };
 // ======================= list products =================================
 export const listProducts = async (req, res, next) => {
-  const ApiFeatureInstance = new ApiFeatures(productModel.find({}), req.query)
+  const ApiFeatureInstance = new ApiFeatures(productModel.find({}).populate('categoryId'), req.query)
 
     .sort()
     .pagination()
     .select()
-    .filters()
-    .populate('categoryId');
+    .filters();
+     
   // .populate([
   //   {
   //     path: "Reviews",
