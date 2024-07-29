@@ -257,7 +257,7 @@ export const listProducts = async (req, res, next) => {
     .sort()
     .pagination()
     .select()
-    .filters();
+    .filters().populate([{path:'Category'}]);
   // .populate([
   //   {
   //     path: "Reviews",
