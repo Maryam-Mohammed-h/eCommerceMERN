@@ -1,10 +1,10 @@
-export const paginationFunction = ({ page ,size }) => {
-  if (page < 1||page==undefined||page==null||page==NAN) {
+export const paginationFunction = ({ page=1 ,elemsByPage=2 }) => {
+  if (page < 1) {
     page = 1;
   }
-  if (size < 1||size==undefined||size==null||size==NAN) size = 1;
+  if (elemsByPage < 1) elemsByPage = 1;
 
-  let limit = size;
+  let limit = elemsByPage;
   let skip = (page - 1) * limit;
   return { limit, skip };
 };
