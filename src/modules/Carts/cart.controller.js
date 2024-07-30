@@ -96,7 +96,7 @@ export const deleteFromCart = async (req, res, next) => {
 export const getUserCart = async (req, res, next) => {
   const userId = req.authUser._id;
   // get product by id
-  const userCart = await cartModel.findOne({userId });
+  const userCart = await cartModel.findOne({userId }).populate({path:'products.productId',select:'title priceAfterDiscount Images'});
 
   if (!userCart) {
     return next(new Error("Invalid cart data", { cause: 400 }));
