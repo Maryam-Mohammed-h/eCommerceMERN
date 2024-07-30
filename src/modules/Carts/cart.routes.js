@@ -14,7 +14,7 @@ router.post(
   asyncHandler(cc.addToCart)
 );
 router.get(
-  "/:cartId",
+  "/",
   isAuth([systemRoles.USER]),
   // validationCoreFunction(validators.createCouponValidationSchema),
   asyncHandler(cc.getUserCart)
