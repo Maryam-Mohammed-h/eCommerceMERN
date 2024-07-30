@@ -1,7 +1,7 @@
 import { cartModel } from "../../../DB/Models/cart.model.js";
 import { productModel } from "../../../DB/Models/product.model.js";
 
-// ========================================== create Coupon ==========================================
+// ========================================== add to cart ==========================================
 export const addToCart = async (req, res, next) => {
   const { productId, quantity } = req.body;
   const userId = req.authUser._id;
