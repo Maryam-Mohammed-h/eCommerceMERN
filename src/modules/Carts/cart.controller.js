@@ -49,7 +49,7 @@ export const addToCart = async (req, res, next) => {
       },
       { new: true }
     );
-    res.status(201).json({ message: "Added Done", newProductCart });
+    res.status(201).json({ message: "success", descriptionMessage:"Item added to cart successfully",newProductCart });
   } else {
     // =======if there is not exist cart for this user=========
     const cartObj = {
@@ -63,7 +63,7 @@ export const addToCart = async (req, res, next) => {
         new Error("try again later , fail to add to cart", { cause: 400 })
       );
     }
-    res.status(201).json({ message: "Added Done", cartItem });
+    res.status(201).json({ message: "success",descriptionMessage:"Item added to cart successfully", cartItem });
   }
 };
 
@@ -90,5 +90,5 @@ export const deleteFromCart = async (req, res, next) => {
     }
   });
   await userCart.save();
-  res.status(200).json({ message: "Deleted Done", userCart });
+  res.status(200).json({ message: "success",descriptionMessage:"Item deleted from cart successfully", userCart });
 };
