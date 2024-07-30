@@ -48,7 +48,7 @@ export const addToCart = async (req, res, next) => {
         products: userCart.products,
       },
       { new: true }
-    );
+    ).populate({path:'products.productId',select:'title priceAfterDiscount Images'});
     res.status(201).json({ message: "success", descriptionMessage:"Item added to cart successfully",newProductCart });
   } else {
     // =======if there is not exist cart for this user=========
@@ -80,7 +80,7 @@ export const deleteFromCart = async (req, res, next) => {
   const userCart = await cartModel.findOne({
     userId,
     "products.productId": productId,
-  });
+  }).populate({path:'products.productId',select:'title priceAfterDiscount Images'});
   if (!userCart) {
     return next(new Error("No cart items", { cause: 400 }));
   }
