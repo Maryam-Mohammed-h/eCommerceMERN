@@ -85,7 +85,7 @@ export const deleteFromCart = async (req, res, next) => {
     return next(new Error("No cart items", { cause: 400 }));
   }
   userCart.products.forEach((ele) => {
-    if (ele.productId == productId) {
+    if (ele.productId._id == productId) {
       userCart.products.splice(userCart.products.indexOf(ele), 1);
     }
   });
