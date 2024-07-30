@@ -13,7 +13,12 @@ router.post(
   // validationCoreFunction(validators.createCouponValidationSchema),
   asyncHandler(cc.addToCart)
 );
-
+router.get(
+  "/:cartId",
+  isAuth([systemRoles.USER]),
+  // validationCoreFunction(validators.createCouponValidationSchema),
+  asyncHandler(cc.getUserCart)
+);
 router.delete(
   "/",
   isAuth([systemRoles.USER]),
