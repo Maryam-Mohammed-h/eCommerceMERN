@@ -204,7 +204,7 @@ export const createOrder = async (req, res, next) => {
     }
 
     return res.status(201).json({
-      message: "add order done ",
+      message: "success",
       orderDB,
       checkOutPage: orderSession.url,
     });
@@ -214,7 +214,7 @@ export const createOrder = async (req, res, next) => {
 export const fromCartToOrder = async (req, res, next) => {
   const userId = req.authUser._id;
   // const { cartId } = req.params;
-  const { address, phoneNumber, paymentMethod, couponCode } = req.body;
+  const { address, phoneNumber, paymentMethod, couponCode ,notesForOrder} = req.body;
   const cart = await cartModel.findOne({ userId });
   if (!cart || !cart.products.length) {
     return next(
@@ -277,6 +277,7 @@ export const fromCartToOrder = async (req, res, next) => {
     paidAmount,
     address,
     phoneNumber,
+    notesForOrder,
     paymentMethod,
     orderStatus,
     couponId: req.coupon?._id,
@@ -396,7 +397,8 @@ export const fromCartToOrder = async (req, res, next) => {
     await cart.save();
 
     return res.status(201).json({
-      message: "add order done ",
+      message: "success",
+      descriptionMessage:"Order added successfully",
       orderDB,
       checkOutPage: orderSession.url,
     });
@@ -423,7 +425,7 @@ export const successPayment = async (req, res, next) => {
   }
   order.orderStatus = "Confirmed";
   await order.save();
-  res.status(200).json({ message: "done", order });
+  res.status(200).json({ message: "success", order });
 };
 
 //================================ cancel payment =====================
@@ -461,7 +463,7 @@ export const cancelPayment = async (req, res, next) => {
 
     await coupon.save();
   }
-  res.status(200).json({ message: "done", order });
+  res.status(200).json({ message: "success", order });
 };
 // ================================ mark the order as delivered ===================
 export const deliverOrder = async (req, res, next) => {
@@ -484,5 +486,5 @@ export const deliverOrder = async (req, res, next) => {
     return next(new Error("invalid order", { cause: 400 }));
   }
 
-  return res.status(200).json({ message: "Done", order });
+  return res.status(200).json({ message: "success", order });
 };
