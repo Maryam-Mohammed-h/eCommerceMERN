@@ -49,7 +49,7 @@ export const addToCart = async (req, res, next) => {
       },
       { new: true }
     ).populate({path:'products.productId',select:'title priceAfterDiscount Images'});
-    res.status(201).json({ message: "success", descriptionMessage:"Item added to cart successfully",newProductCart });
+    res.status(201).json({ message: "success", descriptionMessage:"Cart updated successfully",newProductCart });
   } else {
     // =======if there is not exist cart for this user=========
     const cartObj = {
@@ -63,7 +63,7 @@ export const addToCart = async (req, res, next) => {
         new Error("try again later , fail to add to cart", { cause: 400 })
       );
     }
-    res.status(201).json({ message: "success",descriptionMessage:"Item added to cart successfully", cartItem });
+    res.status(201).json({ message: "success",descriptionMessage:"Cart updated successfully", cartItem });
   }
 };
 

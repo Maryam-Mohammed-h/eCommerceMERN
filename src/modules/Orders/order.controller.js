@@ -213,9 +213,9 @@ export const createOrder = async (req, res, next) => {
 // ################################################################
 export const fromCartToOrder = async (req, res, next) => {
   const userId = req.authUser._id;
-  const { cartId } = req.query;
+  // const { cartId } = req.params;
   const { address, phoneNumber, paymentMethod, couponCode } = req.body;
-  const cart = await cartModel.findById({ _id: cartId, userId });
+  const cart = await cartModel.findById({ userId });
   if (!cart || !cart.products.length) {
     return next(
       new Error(`Cart has no items yet`, {

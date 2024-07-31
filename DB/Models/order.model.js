@@ -51,6 +51,9 @@ const orderSchema = new Schema(
       type: String,
       required: true,
     },
+    notesForOrder: {
+      type: String,
+    },
     phoneNumber: [{ type: String, required: true }],
     orderStatus: {
       type: String,
