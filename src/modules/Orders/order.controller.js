@@ -394,6 +394,7 @@ export const fromCartToOrder = async (req, res, next) => {
     }
     //remove product from user cart if exist
     cart.products = [];
+    cart.subTotal=0;
     await cart.save();
 
     return res.status(201).json({
