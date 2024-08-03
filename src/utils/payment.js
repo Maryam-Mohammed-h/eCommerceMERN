@@ -19,7 +19,6 @@ export const paymentFunction = async ({
     metadata,
     success_url,
     cancel_url,
-    return_url,
     discounts,
     line_items,
   });

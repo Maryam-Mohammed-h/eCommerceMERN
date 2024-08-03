@@ -322,7 +322,6 @@ export const fromCartToOrder = async (req, res, next) => {
         success_url: `${req.protocol}://${req.headers.host}/order/successOrder?token=${orderToken}`,
        
         cancel_url: `${req.protocol}://${req.headers.host}/order/cancelOrder?token=${orderToken}`,
-        return_url: `http://localhost:3000/order/${orderDB._id.toString() }`,
         discounts: req.couponID ? [{ coupon: req.couponID }] : [],
         line_items: orderDB.products.map((product) => {
           return {
