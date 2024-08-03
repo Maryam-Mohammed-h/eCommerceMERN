@@ -319,7 +319,8 @@ export const fromCartToOrder = async (req, res, next) => {
         mode: "payment",
         customer_email: req.authUser.email,
         metadata: { orderId: orderDB._id.toString() },
-        success_url: `${req.protocol}://${req.headers.host}/order/successOrder?token=${orderToken}`,
+        // success_url: `${req.protocol}://${req.headers.host}/order/successOrder?token=${orderToken}`,
+        success_url:`http:localhost:3000/order?token=${orderToken}`,
         cancel_url: `${req.protocol}://${req.headers.host}/order/cancelOrder?token=${orderToken}`,
         discounts: req.couponID ? [{ coupon: req.couponID }] : [],
         line_items: orderDB.products.map((product) => {
@@ -425,12 +426,12 @@ export const successPayment = async (req, res, next) => {
   }
   order.orderStatus = "Confirmed";
   await order.save();
-  // res.redirect('http://localhost'+req.url)
+
   res.status(200).json({ message: "success", order });
   // res.redirect(`http://localhost:3000/order/${_id}`)
-  res.writeHead(301, {
-    Location: `http://localhost:3000/order/${_id}`
-  }).end();
+  // res.writeHead(301, {
+  //   Location: `http://localhost:3000/order/${_id}`
+  // }).end();
 
 };
 

@@ -33,7 +33,7 @@ export const signUp = async (req, res, next) => {
       email,
     },
     signature: process.env.CONFIRMATION_EMAIL_TOKEN,
-    expiresIn: "1h",
+    // expiresIn: "1h",
   });
   //confirm email
   const confirmationLinkRfToken = `${req.protocol}://${req.headers.host}/auth/reConfirm/${rfToken}`;
