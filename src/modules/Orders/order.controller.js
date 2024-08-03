@@ -426,9 +426,12 @@ export const successPayment = async (req, res, next) => {
   order.orderStatus = "Confirmed";
   await order.save();
   // res.redirect('http://localhost'+req.url)
-  res.redirect(`http://localhost:3000/order/${_id}`)
-  
   // res.status(200).json({ message: "success", order });
+  // res.redirect(`http://localhost:3000/order/${_id}`)
+  res.writeHead(301, {
+    Location: `http://localhost:3000/orde/${_id}`
+  }).end();
+
 };
 
 //================================ cancel payment =====================
