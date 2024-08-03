@@ -420,13 +420,15 @@ export const successPayment = async (req, res, next) => {
     _id: decodeData.orderId,
     orderStatus: "Pending",
   });
-  console.log(decodeData.orderId);
   if (!order) {
     return next(new Error("invalid order id", { cause: 400 }));
   }
   order.orderStatus = "Confirmed";
   await order.save();
-  res.status(200).json({ message: "success", order });
+  // res.redirect('http://localhost'+req.url)
+  res.redirect(`http://localhost:3000/order/${_id}`)
+  
+  // res.status(200).json({ message: "success", order });
 };
 
 //================================ cancel payment =====================
