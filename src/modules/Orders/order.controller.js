@@ -319,9 +319,10 @@ export const fromCartToOrder = async (req, res, next) => {
         mode: "payment",
         customer_email: req.authUser.email,
         metadata: { orderId: orderDB._id.toString() },
-        // success_url: `${req.protocol}://${req.headers.host}/order/successOrder?token=${orderToken}`,
-        success_url:`http:localhost:3000/order?token=${orderToken}`,
+        success_url: `${req.protocol}://${req.headers.host}/order/successOrder?token=${orderToken}`,
+       
         cancel_url: `${req.protocol}://${req.headers.host}/order/cancelOrder?token=${orderToken}`,
+        return_url: `http://localhost:3000/order/${orderToken}`,
         discounts: req.couponID ? [{ coupon: req.couponID }] : [],
         line_items: orderDB.products.map((product) => {
           return {
