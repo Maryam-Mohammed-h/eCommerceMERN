@@ -428,10 +428,10 @@ export const successPayment = async (req, res, next) => {
   await order.save();
 
   // res.status(200).json({ message: "success", order });
-  res.send({ message: "success",redirect_path: "Get back to the website : http://localhost:3000"});
+  // res.send({ message: "success",redirect_path: "Get back to the website : http://localhost:3000"});
 
   // return res.redirect(`http://localhost:3000/order`)
-  // res.send('<script>window.location.href="http://localhost:3000/order";</script>');
+  res.send('<script>window.location.href="http://localhost:3000/order";</script>');
   // res.writeHead(301, {
   //   Location: `http://localhost:3000/order/${_id}`
   // }).end();
